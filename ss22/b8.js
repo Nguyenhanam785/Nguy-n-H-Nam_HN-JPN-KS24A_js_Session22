@@ -1,14 +1,19 @@
 let number = prompt("Nhập một chuỗi:");
 
-if (!isNaN(number) && number.trim() !== "") {
+if (number && !isNaN(Number(number)) && Number(number) >= 0) { 
     let arr = number.split("").map(Number);
-    let max = arr[0];
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[i] > max) {
-            max = arr[i];
+    let frequency = {};
+    let maxCount = 0;
+    let mostFrequent = null;
+    for (let num of arr) {
+        frequency[num] = (frequency[num] || 0) + 1;
+        if (frequency[num] > maxCount) {
+            maxCount = frequency[num];
+            mostFrequent = num;
         }
     }
-    console.log("Số lớn nhất là: " + max);
+
+    console.log("Số xuất hiện nhiều nhất là: " + mostFrequent);
 } else {
     console.log("Không hợp lệ");
 }
